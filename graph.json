@@ -1,0 +1,114 @@
+{
+  "metadata": {
+    "title": "AI Relationships",
+    "subtitle": "Major AI firms and cloud providers relying on one another via interlocking deals",
+    "directed": true,
+    "status_legend": {
+      "no_deal": "No deal",
+      "pending": "Pending",
+      "deal": "Deal"
+    },
+    "matrix_axes": {
+      "rows": "provider",
+      "columns": "customer"
+    },
+    "notes": [
+      "Customer can also refer to cloud providers that resell other companies' AI models."
+    ],
+    "self_cells": "omitted",
+    "source_note": "The Information reporting. Updated Jan. 14."
+  },
+  "nodes": [
+    {"id": "google", "label": "Google", "valuation_b": 2940},
+    {"id": "microsoft", "label": "Microsoft", "valuation_b": 3850},
+    {"id": "amazon", "label": "Amazon", "valuation_b": 2550},
+    {"id": "openai", "label": "OpenAI", "valuation_b": 500},
+    {"id": "meta", "label": "Meta", "valuation_b": 1840},
+    {"id": "xai_tesla", "label": "xAI/Tesla", "valuation_b": 1710},
+    {"id": "nvidia", "label": "Nvidia", "valuation_b": 4530},
+    {"id": "apple", "label": "Apple", "valuation_b": 3010},
+    {"id": "anthropic", "label": "Anthropic", "valuation_b": 350}
+  ],
+  "edges": [
+    {"provider": "google", "customer": "microsoft", "status": "no_deal"},
+    {"provider": "google", "customer": "amazon", "status": "no_deal"},
+    {"provider": "google", "customer": "openai", "status": "deal"},
+    {"provider": "google", "customer": "meta", "status": "deal"},
+    {"provider": "google", "customer": "xai_tesla", "status": "no_deal"},
+    {"provider": "google", "customer": "nvidia", "status": "deal"},
+    {"provider": "google", "customer": "apple", "status": "deal"},
+    {"provider": "google", "customer": "anthropic", "status": "deal"},
+
+    {"provider": "microsoft", "customer": "google", "status": "no_deal"},
+    {"provider": "microsoft", "customer": "amazon", "status": "no_deal"},
+    {"provider": "microsoft", "customer": "openai", "status": "deal"},
+    {"provider": "microsoft", "customer": "meta", "status": "deal"},
+    {"provider": "microsoft", "customer": "xai_tesla", "status": "no_deal"},
+    {"provider": "microsoft", "customer": "nvidia", "status": "deal"},
+    {"provider": "microsoft", "customer": "apple", "status": "no_deal"},
+    {"provider": "microsoft", "customer": "anthropic", "status": "deal"},
+
+    {"provider": "amazon", "customer": "google", "status": "no_deal"},
+    {"provider": "amazon", "customer": "microsoft", "status": "no_deal"},
+    {"provider": "amazon", "customer": "openai", "status": "deal"},
+    {"provider": "amazon", "customer": "meta", "status": "deal"},
+    {"provider": "amazon", "customer": "xai_tesla", "status": "no_deal"},
+    {"provider": "amazon", "customer": "nvidia", "status": "deal"},
+    {"provider": "amazon", "customer": "apple", "status": "deal"},
+    {"provider": "amazon", "customer": "anthropic", "status": "deal"},
+
+    {"provider": "openai", "customer": "google", "status": "no_deal"},
+    {"provider": "openai", "customer": "microsoft", "status": "deal"},
+    {"provider": "openai", "customer": "amazon", "status": "pending"},
+    {"provider": "openai", "customer": "meta", "status": "no_deal"},
+    {"provider": "openai", "customer": "xai_tesla", "status": "no_deal"},
+    {"provider": "openai", "customer": "nvidia", "status": "no_deal"},
+    {"provider": "openai", "customer": "apple", "status": "deal"},
+    {"provider": "openai", "customer": "anthropic", "status": "no_deal"},
+
+    {"provider": "meta", "customer": "google", "status": "no_deal"},
+    {"provider": "meta", "customer": "microsoft", "status": "deal"},
+    {"provider": "meta", "customer": "amazon", "status": "deal"},
+    {"provider": "meta", "customer": "openai", "status": "no_deal"},
+    {"provider": "meta", "customer": "xai_tesla", "status": "no_deal"},
+    {"provider": "meta", "customer": "nvidia", "status": "no_deal"},
+    {"provider": "meta", "customer": "apple", "status": "no_deal"},
+    {"provider": "meta", "customer": "anthropic", "status": "no_deal"},
+
+    {"provider": "xai_tesla", "customer": "google", "status": "no_deal"},
+    {"provider": "xai_tesla", "customer": "microsoft", "status": "deal"},
+    {"provider": "xai_tesla", "customer": "amazon", "status": "no_deal"},
+    {"provider": "xai_tesla", "customer": "openai", "status": "no_deal"},
+    {"provider": "xai_tesla", "customer": "meta", "status": "no_deal"},
+    {"provider": "xai_tesla", "customer": "nvidia", "status": "no_deal"},
+    {"provider": "xai_tesla", "customer": "apple", "status": "no_deal"},
+    {"provider": "xai_tesla", "customer": "anthropic", "status": "no_deal"},
+
+    {"provider": "nvidia", "customer": "google", "status": "deal"},
+    {"provider": "nvidia", "customer": "microsoft", "status": "deal"},
+    {"provider": "nvidia", "customer": "amazon", "status": "deal"},
+    {"provider": "nvidia", "customer": "openai", "status": "deal"},
+    {"provider": "nvidia", "customer": "meta", "status": "deal"},
+    {"provider": "nvidia", "customer": "xai_tesla", "status": "deal"},
+    {"provider": "nvidia", "customer": "apple", "status": "deal"},
+    {"provider": "nvidia", "customer": "anthropic", "status": "deal"},
+
+    {"provider": "apple", "customer": "google", "status": "no_deal"},
+    {"provider": "apple", "customer": "microsoft", "status": "no_deal"},
+    {"provider": "apple", "customer": "amazon", "status": "no_deal"},
+    {"provider": "apple", "customer": "openai", "status": "no_deal"},
+    {"provider": "apple", "customer": "meta", "status": "no_deal"},
+    {"provider": "apple", "customer": "xai_tesla", "status": "no_deal"},
+    {"provider": "apple", "customer": "nvidia", "status": "no_deal"},
+    {"provider": "apple", "customer": "anthropic", "status": "no_deal"},
+
+    {"provider": "anthropic", "customer": "google", "status": "no_deal"},
+    {"provider": "anthropic", "customer": "microsoft", "status": "deal"},
+    {"provider": "anthropic", "customer": "amazon", "status": "deal"},
+    {"provider": "anthropic", "customer": "openai", "status": "no_deal"},
+    {"provider": "anthropic", "customer": "meta", "status": "no_deal"},
+    {"provider": "anthropic", "customer": "xai_tesla", "status": "no_deal"},
+    {"provider": "anthropic", "customer": "nvidia", "status": "no_deal"},
+    {"provider": "anthropic", "customer": "apple", "status": "no_deal"}
+  ]
+}
