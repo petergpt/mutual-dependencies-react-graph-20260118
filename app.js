@@ -45,6 +45,32 @@
 
   const clamp = (value, min, max) => Math.min(max, Math.max(min, value));
 
+  const hexToRgb = (hex) => {
+    if (!hex || typeof hex !== "string") return null;
+    const normalized = hex.replace("#", "").trim();
+    const expanded =
+      normalized.length === 3
+        ? normalized
+            .split("")
+            .map((char) => char + char)
+            .join("")
+        : normalized;
+    if (expanded.length !== 6) return null;
+    const num = Number.parseInt(expanded, 16);
+    if (Number.isNaN(num)) return null;
+    return {
+      r: (num >> 16) & 255,
+      g: (num >> 8) & 255,
+      b: num & 255
+    };
+  };
+
+  const rgbaFromHex = (hex, alpha) => {
+    const rgb = hexToRgb(hex);
+    if (!rgb) return `rgba(31, 35, 40, ${alpha})`;
+    return `rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, ${alpha})`;
+  };
+
   const buildRadiusScale = (values, minRadius = 18, maxRadius = 34, exponent = 0.6) => {
     const clean = values.filter((value) => Number.isFinite(value));
     if (!clean.length) {
@@ -93,6 +119,7 @@
           id: node.id,
           label: node.label,
           valuation: Number.isFinite(valuation) ? valuation : null,
+          brandColor: node.color || "#1f2328",
           x: 0,
           y: 0,
           vx: 0,
@@ -439,7 +466,7 @@
         const neutralBoost = neutralMode && !dimmed && !active && !isConnected;
 
         ctx.save();
-        const baseAlpha = dimmed ? 0.42 : 1;
+        const baseAlpha = dimmed ? 0.52 : 1;
         ctx.globalAlpha = baseAlpha;
 
         if (active) {
@@ -473,36 +500,21 @@
           ctx.restore();
         }
 
-        const baseFill = dimmed ? "#f2f4f7" : "#ffffff";
-        const baseStroke = dimmed ? "#aeb6c2" : "#1f2328";
-        let fill = baseFill;
-        let stroke = baseStroke;
+        const brand = node.brandColor || "#1f2328";
+        const fillNeutral = rgbaFromHex(brand, 0.14);
+        const fillConnected = rgbaFromHex(brand, 0.2);
+        const fillActive = rgbaFromHex(brand, 0.26);
+        const fillDimmed = rgbaFromHex(brand, 0.18);
+        const strokeNeutral = rgbaFromHex(brand, 0.85);
+        const strokeActive = rgbaFromHex(brand, 0.95);
+        const strokeDimmed = rgbaFromHex(brand, 0.5);
 
-        if (outgoing && !incoming) {
-          fill = HIGHLIGHT.outgoing.fill;
-          stroke = HIGHLIGHT.outgoing.stroke;
-        } else if (incoming && !outgoing) {
-          fill = HIGHLIGHT.incoming.fill;
-          stroke = HIGHLIGHT.incoming.stroke;
-        }
+        let fill = dimmed ? fillDimmed : isConnected ? fillConnected : fillNeutral;
+        let stroke = dimmed ? strokeDimmed : strokeNeutral;
 
         if (active) {
-          fill = "#ffffff";
-          stroke = "#0c0c0c";
-        }
-
-        const useBothFill = isBoth && !dimmed && !active;
-        if (useBothFill) {
-          const gradient = ctx.createLinearGradient(
-            node.x - radius,
-            node.y,
-            node.x + radius,
-            node.y
-          );
-          gradient.addColorStop(0, HIGHLIGHT.outgoing.fill);
-          gradient.addColorStop(1, HIGHLIGHT.incoming.fill);
-          fill = gradient;
-          stroke = "#2a2f36";
+          fill = fillActive;
+          stroke = strokeActive;
         }
 
         if (neutralBoost) {
@@ -515,18 +527,18 @@
             radius
           );
           neutralGradient.addColorStop(0, "rgba(255, 255, 255, 1)");
-          neutralGradient.addColorStop(1, "rgba(224, 230, 238, 1)");
+          neutralGradient.addColorStop(1, rgbaFromHex(brand, 0.2));
           fill = neutralGradient;
-          stroke = "#1c2026";
+          stroke = strokeNeutral;
         }
 
         ctx.save();
         ctx.shadowColor = active
-          ? "rgba(12, 16, 20, 0.16)"
+          ? rgbaFromHex(brand, 0.18)
           : isConnected
-          ? "rgba(12, 16, 20, 0.12)"
+          ? rgbaFromHex(brand, 0.14)
           : neutralBoost
-          ? "rgba(12, 16, 20, 0.16)"
+          ? rgbaFromHex(brand, 0.16)
           : "rgba(12, 16, 20, 0.08)";
         ctx.shadowBlur = active ? 14 : isConnected ? 11 : neutralBoost ? 12 : 7;
         ctx.fillStyle = fill;
@@ -546,12 +558,12 @@
 
         if (neutralBoost) {
           ctx.save();
-          ctx.strokeStyle = "rgba(20, 24, 30, 0.18)";
-          ctx.lineWidth = 1.2;
+          ctx.strokeStyle = rgbaFromHex(brand, 0.32);
+          ctx.lineWidth = 1.3;
           ctx.beginPath();
           ctx.arc(node.x, node.y, radius + 3.6, 0, Math.PI * 2);
           ctx.stroke();
-          ctx.strokeStyle = "rgba(255, 255, 255, 0.6)";
+          ctx.strokeStyle = "rgba(255, 255, 255, 0.65)";
           ctx.lineWidth = 1;
           ctx.beginPath();
           ctx.arc(node.x, node.y, radius - 1.6, 0, Math.PI * 2);
@@ -877,7 +889,62 @@
       "div",
       { className: "canvas-wrap", ref: wrapRef },
       React.createElement("canvas", { ref: canvasRef }),
-      React.createElement("div", { className: "canvas-title" }, title)
+      React.createElement("div", { className: "canvas-title" }, title),
+      React.createElement(
+        "div",
+        { className: "canvas-legend" },
+        React.createElement(
+          "div",
+          { className: "canvas-legend-item" },
+          React.createElement(
+            "span",
+            {
+              className: "canvas-legend-icon",
+              style: {
+                color: "#fff",
+                background: `linear-gradient(120deg, ${HIGHLIGHT.outgoing.stroke}, #33b7a5)`,
+                borderColor: "rgba(24, 143, 124, 0.45)"
+              }
+            },
+            "→"
+          ),
+          React.createElement("span", null, "Customer")
+        ),
+        React.createElement(
+          "div",
+          { className: "canvas-legend-item" },
+          React.createElement(
+            "span",
+            {
+              className: "canvas-legend-icon",
+              style: {
+                color: "#fff",
+                background: `linear-gradient(120deg, ${HIGHLIGHT.incoming.stroke}, #5c86ff)`,
+                borderColor: "rgba(40, 86, 208, 0.45)"
+              }
+            },
+            "←"
+          ),
+          React.createElement("span", null, "Supplier")
+        ),
+          React.createElement(
+            "div",
+            { className: "canvas-legend-item" },
+            React.createElement(
+              "span",
+              {
+                className: "canvas-legend-icon both",
+                style: {
+                  color: "#fff",
+                  background: "linear-gradient(120deg, #2856d0, #188f7c)",
+                  borderColor: "rgba(42, 47, 54, 0.4)"
+                }
+              },
+              "↔"
+            ),
+            React.createElement("span", null, "Both")
+          )
+      )
     );
   }
 

@@ -19,15 +19,15 @@
     "source_note": "The Information reporting. Updated Jan. 14."
   },
   "nodes": [
-    {"id": "google", "label": "Google", "valuation_b": 2940},
-    {"id": "microsoft", "label": "Microsoft", "valuation_b": 3850},
-    {"id": "amazon", "label": "Amazon", "valuation_b": 2550},
-    {"id": "openai", "label": "OpenAI", "valuation_b": 500},
-    {"id": "meta", "label": "Meta", "valuation_b": 1840},
-    {"id": "xai_tesla", "label": "xAI/Tesla", "valuation_b": 1710},
-    {"id": "nvidia", "label": "Nvidia", "valuation_b": 4530},
-    {"id": "apple", "label": "Apple", "valuation_b": 3010},
-    {"id": "anthropic", "label": "Anthropic", "valuation_b": 350}
+    {"id": "google", "label": "Google", "valuation_b": 2940, "color": "#4285F4"},
+    {"id": "microsoft", "label": "Microsoft", "valuation_b": 3850, "color": "#00A4EF"},
+    {"id": "amazon", "label": "Amazon", "valuation_b": 2550, "color": "#D9822B"},
+    {"id": "openai", "label": "OpenAI", "valuation_b": 500, "color": "#10A37F"},
+    {"id": "meta", "label": "Meta", "valuation_b": 1840, "color": "#0064E0"},
+    {"id": "xai_tesla", "label": "xAI/Tesla", "valuation_b": 1710, "color": "#B32024"},
+    {"id": "nvidia", "label": "Nvidia", "valuation_b": 4530, "color": "#76B900"},
+    {"id": "apple", "label": "Apple", "valuation_b": 3010, "color": "#1D1D1F"},
+    {"id": "anthropic", "label": "Anthropic", "valuation_b": 350, "color": "#D05A36"}
   ],
   "edges": [
     {"provider": "google", "customer": "microsoft", "status": "no_deal"},

@@ -155,21 +155,50 @@ body {
   position: absolute;
   inset: 0;
   background-image:
-    linear-gradient(rgba(20, 24, 30, 0.16) 1.4px, transparent 1.4px),
-    linear-gradient(90deg, rgba(20, 24, 30, 0.16) 1.4px, transparent 1.4px),
-    linear-gradient(rgba(20, 24, 30, 0.08) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(20, 24, 30, 0.08) 1px, transparent 1px),
-    radial-gradient(rgba(20, 24, 30, 0.18) 0.9px, transparent 0.9px),
     repeating-linear-gradient(
-      135deg,
+      24deg,
       rgba(20, 24, 30, 0.08) 0,
       rgba(20, 24, 30, 0.08) 1px,
       transparent 1px,
-      transparent 18px
-    );
-  background-size: 150px 150px, 150px 150px, 30px 30px, 30px 30px, 18px 18px, 220px 220px;
-  background-position: -8px -8px, -8px -8px, 0 0, 0 0, 0 0, 0 0;
-  opacity: 0.42;
+      transparent 190px
+    ),
+    repeating-linear-gradient(
+      -33deg,
+      rgba(20, 24, 30, 0.06) 0,
+      rgba(20, 24, 30, 0.06) 1px,
+      transparent 1px,
+      transparent 240px
+    ),
+    repeating-linear-gradient(
+      67deg,
+      rgba(20, 24, 30, 0.05) 0,
+      rgba(20, 24, 30, 0.05) 1px,
+      transparent 1px,
+      transparent 160px
+    ),
+    radial-gradient(circle at 18% 22%, rgba(20, 24, 30, 0.18) 0 1px, transparent 1px),
+    radial-gradient(
+      circle at 18% 22%,
+      transparent 45%,
+      rgba(20, 24, 30, 0.1) 45.5%,
+      transparent 47%
+    ),
+    radial-gradient(
+      circle at 78% 18%,
+      transparent 38%,
+      rgba(20, 24, 30, 0.08) 38.5%,
+      transparent 40%
+    ),
+    radial-gradient(
+      circle at 74% 70%,
+      transparent 32%,
+      rgba(20, 24, 30, 0.08) 32.5%,
+      transparent 34%
+    ),
+    radial-gradient(rgba(20, 24, 30, 0.16) 0.7px, transparent 0.7px);
+  background-size: auto, auto, auto, auto, auto, auto, auto, 22px 22px;
+  background-position: 0 0, 0 0, 0 0, 0 0, 0 0, 0 0, 0 0, 0 0;
+  opacity: 0.36;
   pointer-events: none;
 }
 
@@ -199,6 +228,54 @@ canvas {
   pointer-events: none;
   mix-blend-mode: multiply;
   white-space: nowrap;
+}
+
+.canvas-legend {
+  position: absolute;
+  left: 4%;
+  bottom: 4%;
+  z-index: 3;
+  display: flex;
+  gap: 12px;
+  padding: 12px 14px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.78);
+  border: 1px solid rgba(20, 24, 30, 0.12);
+  box-shadow: 0 16px 30px rgba(16, 20, 24, 0.12);
+  backdrop-filter: blur(10px);
+}
+
+.canvas-legend-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(20, 24, 30, 0.1);
+  font-size: 13px;
+  font-weight: 700;
+  color: #1d232b;
+  letter-spacing: 0.01em;
+}
+
+.canvas-legend-icon {
+  font-family: "JetBrains Mono", "Courier New", monospace;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 20px;
+  padding: 3px 8px;
+  border-radius: 999px;
+  background: rgba(0, 0, 0, 0.06);
+  border: 1px solid rgba(0, 0, 0, 0.18);
+}
+
+.canvas-legend-icon.both {
+  color: #2a2f36;
 }
 
 @media (max-width: 900px) {
