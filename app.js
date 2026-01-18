@@ -906,7 +906,19 @@
                 borderColor: "rgba(24, 143, 124, 0.45)"
               }
             },
-            "→"
+            React.createElement(
+              "svg",
+              {
+                viewBox: "0 0 24 24",
+                fill: "none",
+                stroke: "currentColor",
+                strokeWidth: 2,
+                strokeLinecap: "round",
+                strokeLinejoin: "round",
+                "aria-hidden": true
+              },
+              React.createElement("path", { d: "M5 12h12m0 0l-4-4m4 4l-4 4" })
+            )
           ),
           React.createElement("span", null, "Customer")
         ),
@@ -923,7 +935,19 @@
                 borderColor: "rgba(40, 86, 208, 0.45)"
               }
             },
-            "←"
+            React.createElement(
+              "svg",
+              {
+                viewBox: "0 0 24 24",
+                fill: "none",
+                stroke: "currentColor",
+                strokeWidth: 2,
+                strokeLinecap: "round",
+                strokeLinejoin: "round",
+                "aria-hidden": true
+              },
+              React.createElement("path", { d: "M19 12H7m0 0l4-4m-4 4l4 4" })
+            )
           ),
           React.createElement("span", null, "Supplier")
         ),
@@ -936,11 +960,25 @@
                 className: "canvas-legend-icon both",
                 style: {
                   color: "#fff",
-                  background: "linear-gradient(120deg, #2856d0, #188f7c)",
-                  borderColor: "rgba(42, 47, 54, 0.4)"
+                  background: "linear-gradient(120deg, #4b5a6a, #2a8f86)",
+                  borderColor: "rgba(42, 47, 54, 0.38)"
                 }
               },
-              "↔"
+              React.createElement(
+                "svg",
+                {
+                  viewBox: "0 0 24 24",
+                  fill: "none",
+                  stroke: "currentColor",
+                  strokeWidth: 2,
+                  strokeLinecap: "round",
+                  strokeLinejoin: "round",
+                  "aria-hidden": true
+                },
+                React.createElement("path", {
+                  d: "M6 12h12M6 12l4-4M6 12l4 4M18 12l-4-4M18 12l-4 4"
+                })
+              )
             ),
             React.createElement("span", null, "Both")
           )
@@ -973,7 +1011,7 @@
         React.createElement(
           "div",
           { className: "title-block" },
-          React.createElement("h1", null, "Mutual Dependencies"),
+          React.createElement("h1", null, "AI Relationships"),
           React.createElement(
             "p",
             null,
@@ -991,7 +1029,7 @@
         React.createElement(
           "div",
           { className: "title-block" },
-          React.createElement("h1", null, "Mutual Dependencies"),
+          React.createElement("h1", null, "AI Relationships"),
           React.createElement("p", null, "Loading the graph data..."),
           React.createElement("div", { className: "badge" }, "Graph loading")
         )
