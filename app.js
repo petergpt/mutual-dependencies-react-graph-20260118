@@ -439,7 +439,7 @@
         const neutralBoost = neutralMode && !dimmed && !active && !isConnected;
 
         ctx.save();
-        const baseAlpha = dimmed ? 0.16 : 1;
+        const baseAlpha = dimmed ? 0.42 : 1;
         ctx.globalAlpha = baseAlpha;
 
         if (active) {
@@ -473,8 +473,8 @@
           ctx.restore();
         }
 
-        const baseFill = dimmed ? "#f1f1f1" : "#ffffff";
-        const baseStroke = dimmed ? "#c7ccd4" : "#1f2328";
+        const baseFill = dimmed ? "#f2f4f7" : "#ffffff";
+        const baseStroke = dimmed ? "#aeb6c2" : "#1f2328";
         let fill = baseFill;
         let stroke = baseStroke;
 
@@ -644,7 +644,7 @@
         ctx.strokeStyle = dimmed ? "rgba(0, 0, 0, 0.12)" : "rgba(0, 0, 0, 0.05)";
         ctx.lineWidth = 1;
         ctx.stroke();
-        ctx.fillStyle = dimmed ? "#8b8f95" : "#111418";
+        ctx.fillStyle = dimmed ? "#606874" : "#111418";
         ctx.fillText(label, labelX + 8, labelY + labelHeight / 2 + 0.5);
         ctx.restore();
       };
